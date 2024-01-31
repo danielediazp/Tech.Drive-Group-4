@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
     Table,
     TableBody,
@@ -10,11 +11,13 @@ import {
 import TestData from "../testdata.json"
 
 // Can we assume exams conform to correct data types due to schema checks in back end?
+// TODO: Set up code to track active checkboxes & (later) use delete endpoint 
 const ExamTable = ({exams}) => {
     return(
         <Table>
             <TableHeader>
                 <TableRow>
+                    <TableHead />
                     <TableHead>Patient ID</TableHead>
                     <TableHead>Exam ID</TableHead>
                     <TableHead>Image</TableHead>
@@ -32,7 +35,8 @@ const ExamTable = ({exams}) => {
                         return(
                             exam != null ? 
                             <TableRow>
-                                <TableCell>{exam["patientId"]}</TableCell>
+                                <Checkbox />
+                                <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
                                 <TableCell>{exam.imageURL}</TableCell>
                                 <TableCell>{exam.keyFindings}</TableCell>
