@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import { DotsVerticalIcon } from "@radix-ui/react-icons"
+
 import {
     Table,
     TableBody,
@@ -12,6 +14,17 @@ import TestData from "../testdata.json"
 
 // Can we assume exams conform to correct data types due to schema checks in back end?
 // TODO: Set up code to track active checkboxes & (later) use delete endpoint 
+// TODO: Add menu button for editing/deleting individual checkboxes
+// TODO: Add popup for editing record
+// TODO: Add popup or page for adding new record
+// TODO: Set up editing buttons to use endpoints
+
+const MenuButton = () => {
+    return(
+            <DotsVerticalIcon />
+    )
+}
+
 const ExamTable = ({exams}) => {
     return(
         <Table>
@@ -27,6 +40,7 @@ const ExamTable = ({exams}) => {
                     <TableHead>Sex</TableHead>
                     <TableHead>BMI</TableHead>
                     <TableHead>ZIP Code</TableHead>
+                    <TableHead />
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -45,6 +59,7 @@ const ExamTable = ({exams}) => {
                                 <TableCell>{exam.sex}</TableCell>
                                 <TableCell>{exam.bmi}</TableCell>
                                 <TableCell>{exam.zipCode}</TableCell>
+                                <MenuButton />
                             </TableRow> :
                             <></>)
                         }
