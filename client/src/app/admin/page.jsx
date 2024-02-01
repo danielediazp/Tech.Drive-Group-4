@@ -8,7 +8,9 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-import TestData from "../testdata.json"
+
+import TestData from "./testdata.json";
+
 
 // Can we assume exams conform to correct data types due to schema checks in back end?
 // TODO: Set up code to track active checkboxes & (later) use delete endpoint 
@@ -35,7 +37,27 @@ const ExamTable = ({exams}) => {
                         return(
                             exam != null ? 
                             <TableRow>
-                                <Checkbox />
+                                <TableBody>
+                {exams.map((exam) => 
+                    {
+                        return(
+                            exam != null ? 
+                            <TableRow>
+                                <TableCell>{exam.patientId}</TableCell>
+                                <TableCell>{exam.examId}</TableCell>
+                                <TableCell>{exam.imageURL}</TableCell>
+                                <TableCell>{exam.keyFindings}</TableCell>
+                                <TableCell>{exam.brixiaScores}</TableCell>
+                                <TableCell>{exam.age}</TableCell>
+                                <TableCell>{exam.sex}</TableCell>
+                                <TableCell>{exam.bmi}</TableCell>
+                                <TableCell>{exam.zipCode}</TableCell>
+                            </TableRow> :
+                            <></>)
+                        }
+                )
+                }
+            </TableBody>
                                 <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
                                 <TableCell>{exam.imageURL}</TableCell>
