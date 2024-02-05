@@ -1,7 +1,6 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import TestData from "../testData.json"
 import ExamTable from "./ExamTable"
 import {useState, useEffect} from 'react'
 
@@ -11,11 +10,16 @@ import {useState, useEffect} from 'react'
 // TODO: Add popup or page for adding new record
 // TODO: Set up editing buttons to use endpoints
 
-
-
 const Admin = () => {
     const [exams, setExams] = useState(null)
     const [isLoading, setLoading] = useState(true)
+
+    // BATCH DELETING EXAMS
+    // Set up useState to track list of exam IDs (or full exam objects) that have been selected
+    // Attach function to checkbox in ExamTable that adds/removes IDs/exams from list when checked/unchecked
+    // Delete button should only be active if one or more exams are selected
+    // Clicking delete button triggers "Are you sure" popup
+    // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
 
     useEffect(() => {
         fetch('https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams')
