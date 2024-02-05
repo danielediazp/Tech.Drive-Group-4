@@ -10,6 +10,7 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
+
 const ExamTable = ({exams}) => {
     return(
         <Table>
