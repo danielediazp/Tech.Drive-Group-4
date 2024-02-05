@@ -1,11 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox"
-import { DotsVerticalIcon } from "@radix-ui/react-icons"
-import { 
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import EditMenu from "./EditMenu"
 
 import {
     Table,
@@ -15,19 +9,6 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-
-const MenuButton = () => {
-    return(
-        <DropdownMenu>
-            <DropdownMenuTrigger><DotsVerticalIcon /></DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <DropdownMenuItem>Edit exam</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Delete exam</DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
-    )
-}
 
 const ExamTable = ({exams}) => {
     return(
@@ -63,7 +44,7 @@ const ExamTable = ({exams}) => {
                                 <TableCell>{exam.sex}</TableCell>
                                 <TableCell>{exam.bmi}</TableCell>
                                 <TableCell>{exam.zipCode}</TableCell>
-                                <MenuButton />
+                                <EditMenu />
                             </TableRow> :
                             <></>)
                         }
