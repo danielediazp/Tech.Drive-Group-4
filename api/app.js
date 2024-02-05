@@ -10,6 +10,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+app.listen(3001)
+
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
