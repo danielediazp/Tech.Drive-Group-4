@@ -8,6 +8,7 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var recordsRouter = require('./routes/records');
 
 var app = express();
 mongoose.set('strictQuery', false);
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/records', recordsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,13 +39,18 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // Return an error in JSON format instead of rendering a page
+  res.status(err.status || 500).json({
+    error: {
+      message: err.message,
+      status: err.status || 500,
+      stack: process.env.NODE_ENV === 'development' ? err.stack : {}
+    }
+  });
 });
 
 module.exports = app;
