@@ -50,7 +50,7 @@ const ExamTable = ({exams, update}) => {
                                 <TableCell>{exam.age}</TableCell>
                                 <TableCell>{exam.sex}</TableCell>
                                 <TableCell>{exam.bmi}</TableCell>
-                                <TableCell>{exam.zipCode}</TableCell>
+                                <TableCell>{exam.zipCode.padStart(5, '0')}</TableCell>
                                 <TableCell><EditMenu /></TableCell>
                             </TableRow> :
                             <></>)

@@ -9,7 +9,6 @@ import "./admin.css"
 // TODO: Add form to edit popup
 // TODO: Add popup for editing new record (using modified edit form?)
 // TODO: Set up editing buttons to use endpoints
-// TODO: Add spacing to add/delete buttons and move to top left (?) of page
 // TODO: Add alternating colors to table rows to improve readability
 // TODO: Add link to detail page from exam ID
 // TODO: Make sure key findings column has enough width to display text reasonably
