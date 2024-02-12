@@ -5,11 +5,14 @@ import ExamTable from "./ExamTable"
 import {useState, useEffect} from 'react'
 import "./admin.css"
 
-// Can we assume exams conform to correct data types due to schema checks in back end?
-// TODO: Set up code to track active checkboxes & (later) use delete endpoint 
+// TODO: Set up code to batch delete records
 // TODO: Add form to edit popup
 // TODO: Add popup or page for adding new record
 // TODO: Set up editing buttons to use endpoints
+// TODO: Add spacing to add/delete buttons and move to top left (?) of page
+// TODO: Add alternating colors to table rows to improve readability
+// TODO: Truncate key findings to maximum character length in admin view
+// TODO: Make sure key findings column has enough width to display text reasonably
 
 const Admin = () => {
     const [exams, setExams] = useState(null)
@@ -24,10 +27,10 @@ const Admin = () => {
         }
     }
 
-    // BATCH DELETING EXAMS
-    // Delete button should only be active if one or more exams are selected
-    // Clicking delete button triggers "Are you sure" popup
-    // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
+    // TODO: BATCH DELETING EXAMS
+        // Delete button should only be active if one or more exams are selected
+        // Clicking delete button triggers "Are you sure" popup
+        // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
 
     useEffect(() => {
         fetch('https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams')
