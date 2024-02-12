@@ -35,7 +35,7 @@ const ExamTable = ({exams}) => {
                         return(
                             exam != null ? 
                             <TableRow className="exam-table-row">
-                                <div className="table-container"><Checkbox className="exam-checkbox"/></div>
+                                <TableCell className="checkbox-cell"><Checkbox className="exam-checkbox"/></TableCell>
                                 <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
                                 <TableCell><img src={exam.imageURL} className="exam-img"/></TableCell>
@@ -45,7 +45,7 @@ const ExamTable = ({exams}) => {
                                 <TableCell>{exam.sex}</TableCell>
                                 <TableCell>{exam.bmi}</TableCell>
                                 <TableCell>{exam.zipCode}</TableCell>
-                                <div className="table-container"><EditMenu /></div>
+                                <TableCell><EditMenu /></TableCell>
                             </TableRow> :
                             <></>)
                         }

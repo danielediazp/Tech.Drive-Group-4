@@ -5,15 +5,15 @@
     overflow: hidden;
 }
 
-.table-container, .exam-table-row {
+.exam-img {
+    width: 125px;
+}
+
+.exam-table-row, .checkbox-cell {
     height: 100%;
 }
 
-.table-container {
+.checkbox-cell {
     display: flex;
     align-items: center;
-}
-
-.exam-img {
-    width: 125px;
 }
