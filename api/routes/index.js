@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
 // Import the doctor router module
 const doctorRouter = require('./doctor');
 
-// Mount the doctor router at the '/doctors' path
+// Mount the doctor router at the /doctors path
 router.use('/doctors', doctorRouter);
 
 // Export the router to make it available for use in other modules

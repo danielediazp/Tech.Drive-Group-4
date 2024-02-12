@@ -7,7 +7,7 @@ const doctorSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    // First name of the doctor
+    // First name of doctor
     name: {
         type: String,
         required: true

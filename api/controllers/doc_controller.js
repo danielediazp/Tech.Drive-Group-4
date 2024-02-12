@@ -74,7 +74,7 @@ exports.updateDoctorId = async (req, res) => {
             }
         }
 
-        // Find the doctor by ID and update its details with the provided data
+        // Find the doctor by ID and update details with the provided data
         const updatedDoctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, { new: true });
         // If the doctor is not found, 404 error 
         if (!updatedDoctor) {

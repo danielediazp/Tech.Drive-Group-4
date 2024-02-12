@@ -7,7 +7,7 @@ const doctorController = require('../controllers/doc_controller');
 // Route to fetch all doctors from the database
 router.get('/', doctorController.getDoctors);
 
-// Route to fetch a specific doctor by their ID
+// Route to fetch a specific doctor by ID
 router.get('/:id', doctorController.getDoctorId);
 
 // Route to create a new doctor entry in the database
