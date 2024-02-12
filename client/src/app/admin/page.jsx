@@ -14,10 +14,17 @@ import "./admin.css"
 const Admin = () => {
     const [exams, setExams] = useState(null)
     const [isLoading, setLoading] = useState(true)
+    const [selected, setSelected] = useState([])
+
+    const updateSelected = (checked, exam) => {
+        if (checked) {
+            setSelected([...selected, exam._id])
+        } else {
+            setSelected(selected.filter(item => item != exam._id))
+        }
+    }
 
     // BATCH DELETING EXAMS
-    // Set up useState to track list of exam IDs (or full exam objects) that have been selected
-    // Attach function to checkbox in ExamTable that adds/removes IDs/exams from list when checked/unchecked
     // Delete button should only be active if one or more exams are selected
     // Clicking delete button triggers "Are you sure" popup
     // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
@@ -39,7 +46,7 @@ const Admin = () => {
             <h1>This is the Admin Page</h1>
             <Button>Add new record</Button>
             <Button>Delete selected record(s)</Button>
-            <ExamTable exams={exams} />
+            <ExamTable exams={exams} update={updateSelected}/>
         </div>
     )   
 }

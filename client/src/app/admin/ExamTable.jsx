@@ -11,7 +11,7 @@ import {
   } from "@/components/ui/table"
 
 
-const ExamTable = ({exams}) => {
+const ExamTable = ({exams, update}) => {
     return(
         <Table className="exam-table">
             <TableHeader>
@@ -35,7 +35,7 @@ const ExamTable = ({exams}) => {
                         return(
                             exam != null ? 
                             <TableRow className="exam-table-row">
-                                <TableCell className="checkbox-cell"><Checkbox className="exam-checkbox"/></TableCell>
+                                <TableCell className="checkbox-cell"><Checkbox className="exam-checkbox" onCheckedChange={(checked) => update(checked, exam)}/></TableCell>
                                 <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
                                 <TableCell><img src={exam.imageURL} className="exam-img"/></TableCell>
