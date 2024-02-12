@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import ExamTable from "./ExamTable"
 import {useState, useEffect} from 'react'
+import "./admin.css"
 
 // Can we assume exams conform to correct data types due to schema checks in back end?
 // TODO: Set up code to track active checkboxes & (later) use delete endpoint 

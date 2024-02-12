@@ -1,6 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import EditMenu from "./EditMenu"
-import "./admin.css"
 
 import {
     Table,
@@ -39,7 +38,7 @@ const ExamTable = ({exams}) => {
                                 <div className="table-container"><Checkbox className="exam-checkbox"/></div>
                                 <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
-                                <TableCell>{exam.imageURL}</TableCell>
+                                <TableCell><img src={exam.imageURL} className="exam-img"/></TableCell>
                                 <TableCell>{exam.keyFindings}</TableCell>
                                 <TableCell>{exam.brixiaScores}</TableCell>
                                 <TableCell>{exam.age}</TableCell>
