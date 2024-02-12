@@ -7,7 +7,7 @@ import "./admin.css"
 
 // TODO: Set up code to batch delete records
 // TODO: Add form to edit popup
-// TODO: Add popup or page for adding new record
+// TODO: Add popup for editing new record (using modified edit form?)
 // TODO: Set up editing buttons to use endpoints
 // TODO: Add spacing to add/delete buttons and move to top left (?) of page
 // TODO: Add alternating colors to table rows to improve readability
@@ -45,10 +45,10 @@ const Admin = () => {
     if (!exams) return <p>No exams found!</p>
 
     return (
-        <div className="py-5">
+        <div className="py-5 px-20">
             <h1>This is the Admin Page</h1>
             <Button>Add new record</Button>
-            {selected.length > 0 ? <Button>Delete selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
+            {selected.length > 0 ? <Button>Delete {selected.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
             <ExamTable exams={exams} update={updateSelected}/>
         </div>
     )   
