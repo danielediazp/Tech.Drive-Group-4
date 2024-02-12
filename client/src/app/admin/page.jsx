@@ -45,10 +45,12 @@ const Admin = () => {
     if (!exams) return <p>No exams found!</p>
 
     return (
-        <div className="py-5 px-20">
+        <div className="py-5 px-20 admin-page">
             <h1>This is the Admin Page</h1>
-            <Button>Add new record</Button>
-            {selected.length > 0 ? <Button>Delete {selected.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
+            <div className="edit-buttons py-5">
+                <Button>Add new record</Button>
+                {selected.length > 0 ? <Button>Delete {selected.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
+            </div>
             <ExamTable exams={exams} update={updateSelected}/>
         </div>
     )   
