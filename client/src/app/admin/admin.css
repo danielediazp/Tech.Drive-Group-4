@@ -1,0 +1,14 @@
+.exam-table {
+    margin: auto;
+    max-width: 90%;
+    height: 1px;
+}
+
+.table-container, .exam-table-row {
+    height: 100%;
+}
+
+.table-container {
+    display: flex;
+    align-items: center;
+}

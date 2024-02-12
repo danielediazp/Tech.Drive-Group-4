@@ -1,5 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import EditMenu from "./EditMenu"
+import "./admin.css"
 
 import {
     Table,
@@ -13,7 +14,7 @@ import {
 
 const ExamTable = ({exams}) => {
     return(
-        <Table>
+        <Table className="exam-table">
             <TableHeader>
                 <TableRow>
                     <TableHead />
@@ -34,8 +35,8 @@ const ExamTable = ({exams}) => {
                     {
                         return(
                             exam != null ? 
-                            <TableRow>
-                                <Checkbox />
+                            <TableRow className="exam-table-row">
+                                <div className="table-container"><Checkbox className="exam-checkbox"/></div>
                                 <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
                                 <TableCell>{exam.imageURL}</TableCell>
@@ -45,7 +46,7 @@ const ExamTable = ({exams}) => {
                                 <TableCell>{exam.sex}</TableCell>
                                 <TableCell>{exam.bmi}</TableCell>
                                 <TableCell>{exam.zipCode}</TableCell>
-                                <EditMenu />
+                                <div className="table-container"><EditMenu /></div>
                             </TableRow> :
                             <></>)
                         }
