@@ -11,7 +11,7 @@ import "./admin.css"
 // TODO: Set up editing buttons to use endpoints
 // TODO: Add spacing to add/delete buttons and move to top left (?) of page
 // TODO: Add alternating colors to table rows to improve readability
-// TODO: Truncate key findings to maximum character length in admin view
+// TODO: Add link to detail page from exam ID
 // TODO: Make sure key findings column has enough width to display text reasonably
 
 const Admin = () => {
@@ -27,7 +27,7 @@ const Admin = () => {
         }
     }
 
-    // TODO: BATCH DELETING EXAMS
+    // BATCH DELETING EXAMS
         // Delete button should only be active if one or more exams are selected
         // Clicking delete button triggers "Are you sure" popup
         // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list

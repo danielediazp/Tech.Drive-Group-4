@@ -12,6 +12,12 @@ import {
 
 
 const ExamTable = ({exams, update}) => {
+    const truncate = (text) => {
+        return(
+            text.length <= 100 ? text : `${text.slice(0,100)}...`
+        )
+    }
+
     return(
         <Table className="exam-table">
             <TableHeader>
@@ -39,7 +45,7 @@ const ExamTable = ({exams, update}) => {
                                 <TableCell>{exam.patientId}</TableCell>
                                 <TableCell>{exam.examId}</TableCell>
                                 <TableCell><img src={exam.imageURL} className="exam-img"/></TableCell>
-                                <TableCell>{exam.keyFindings}</TableCell>
+                                <TableCell>{truncate(exam.keyFindings)}</TableCell>
                                 <TableCell>{exam.brixiaScores}</TableCell>
                                 <TableCell>{exam.age}</TableCell>
                                 <TableCell>{exam.sex}</TableCell>
