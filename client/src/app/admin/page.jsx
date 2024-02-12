@@ -45,7 +45,7 @@ const Admin = () => {
     if (!exams) return <p>No exams found!</p>
 
     return (
-        <div className="text-center font-bold py-5">
+        <div className="py-5">
             <h1>This is the Admin Page</h1>
             <Button>Add new record</Button>
             {selected.length > 0 ? <Button>Delete selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
