@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -9,6 +10,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+mongoose.set('strictQuery', false);
+
+// MongoDB connection
+// TODO: locate this variable in a .env file 
+const mongoDB = 'mongodb+srv://Daniel:0nRk26ZW5Se4rNxz@cluster0.mhhszcc.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connection successful'))
+  .catch((err) => console.error('MongoDB connection error:', err));
+
 
 app.use(logger('dev'));
 app.use(cors());
