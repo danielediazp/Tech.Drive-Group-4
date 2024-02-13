@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 
 // Define the structure of the Doctor model schema
 const doctorSchema = new mongoose.Schema({
-    // Unique identifier for the doctor
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     // First name of doctor
     name: {
         type: String,
