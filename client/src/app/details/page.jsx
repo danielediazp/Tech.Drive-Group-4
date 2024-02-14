@@ -2,6 +2,7 @@
 
 export default function Detail()
 {
+
     return (
         <div className="text-center font-bold py-5">
             <h1>This is the Detail Page</h1>
