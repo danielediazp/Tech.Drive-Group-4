@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 
 const patientSchema = new mongoose.Schema ({
-    patientID: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true,
-		ref: 'Patient',
-	},
     name: {
         type: String,
         required: true,
@@ -24,21 +19,23 @@ const patientSchema = new mongoose.Schema ({
     sex: {
         type: String,
     },
-    address: {
-        street: {
-            type: String,
-        },
-        city: {
-            type: String,
-        },
-        state: {
-            type: String,
-        },
-        zip_code: {
-            type: String,
-            match: /^\d{5}(?:-\d{4})?$/,
-        },
-    }, 
+    street: {
+        type: String,
+        require: true,
+    },
+    city: {
+        type: String,
+        require: true,
+    },
+    state: {
+        type: String,
+        require: true,
+    },
+    zipcode: {
+        type: String,
+        require: true,
+    }
+        
 });
 
 module.exports = mongoose.model('Patient', patientSchema);
