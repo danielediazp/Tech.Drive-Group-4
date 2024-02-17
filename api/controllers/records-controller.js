@@ -1,4 +1,4 @@
-const Record = require('../models/records');
+const Record = require('../models/records-model');
 
 /**
  * Creates a new medical record and saves it to the database.

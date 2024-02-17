@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const doctorController = require('../controllers/doc_controller');
+const doctorController = require('../controllers/doctor-controller');
 
 // Define routes to handle doctor-related operations
 
