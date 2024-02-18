@@ -22,6 +22,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ImageUpload } from "./image-upload"
 
 
 // TODO: Fetch patient data
@@ -54,6 +55,8 @@ export function EditPopup({ exam }) {
     const patient = fetchPatient(patientId)
 
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+
 
     // Patient data
     const [firstName, setFirstName] = useState(patient["firstName"])
@@ -85,6 +88,7 @@ export function EditPopup({ exam }) {
     function handleSave() {
     }
 
+    
 
     function handleKeyFindingChange(e) { 
         setKeyFindings(e.target.value)
@@ -97,7 +101,6 @@ export function EditPopup({ exam }) {
     function handleBrixiaScoresChange(e) {
         setBrixiaScores(e.target.value)
     }
-
     function handleBmiChange(e) {   
         setBmi(e.target.value)
     }
@@ -178,14 +181,7 @@ export function EditPopup({ exam }) {
                 </DialogHeader>
                 <DialogDescription>
 
-                <div className="border border-dashed border-gray-200 rounded-lg w-full p-6 flex items-center justify-center gap-4 text-center border-gray-200 dark:border-gray-800 mb-3">
-                    <div className="grid w-full gap-2 text-center">
-                        <div className="h-10 grid place-items-center">
-                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Upload new Image</span>
-                        </div>
-                        <Input multiple placeholder="Files" type="file" onValueChange={handleFile}/>
-                    </div>
-                </div>
+                <ImageUpload changeUrl={setImageURL} setLoading={setLoading}/>
 
                     
                     <div className="grid grid-cols-2 gap-y-4 pb-4">
@@ -307,7 +303,7 @@ export function EditPopup({ exam }) {
                     <DialogClose asChild>
                         <Button variant="destructive" onClick={handleCancel}>Cancel</Button>
                     </DialogClose>
-                    <Button>Save</Button>
+                    <Button disabled={loading}>Save</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
