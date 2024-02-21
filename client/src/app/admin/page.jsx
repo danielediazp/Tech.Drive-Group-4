@@ -77,6 +77,7 @@ const ExamTable = ({exams}) => {
                                 <TableCell>{exam.sex}</TableCell>
                                 <TableCell>{exam.bmi}</TableCell>
                                 <TableCell>{exam.zipCode}</TableCell>
+                                <MenuButton />
                             </TableRow> :
                             <></>)
                         }
