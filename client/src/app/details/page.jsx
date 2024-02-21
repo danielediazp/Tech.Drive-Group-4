@@ -15,27 +15,18 @@ import {
       } from "@/components/ui/table"
     
     import TestData from "@/app/testdata.json"
-    
-    const MenuButton = () => {
-        return(
-            <DropdownMenu>
-                <DropdownMenuTrigger><DotsVerticalIcon /></DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuItem>Edit exam</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Delete exam</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        )
-    }
+
     
     const ExamTable = ({exams}) => {
         return(
             
         <Table>
-            <TableHead className="text-center font-bold py-10 text-lg">Patient Info</TableHead>
-            <TableHead className="text-center font-bold py-10 text-lg">Exam Info</TableHead>                
-           
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="text-center font-bold py-10 text-lg">Patient Info</TableHead>
+                    <TableHead className="text-center font-bold py-10 text-lg">Exam Info</TableHead>      
+                </TableRow>          
+           </TableHeader>
             <TableBody>
              <TableRow>
                 <TableCell className="text-left font-bold py-5">Patient ID: {exams.patientId}</TableCell>
