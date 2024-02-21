@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { EditPopup } from "@/components/ui/edit-popup";
+import TestData from "./testdata.json";
+import { ImageUpload } from "@/components/ui/image-upload";
+
 
 export default function Home() {
   return (
@@ -12,9 +16,7 @@ export default function Home() {
 
         <a href="/admin" className="inline-block px-5 py-2">Admin Page</a>
         <a href="/exams" className="inline-block px-5 py-2">Exams Page</a>
-        /* will be another link that goes to the detail page for each exam 
-        from the home page links
-        */
+        <EditPopup exam={TestData["exams"][0]} />
       </div>
       
     </>
@@ -22,4 +24,4 @@ export default function Home() {
 
     
   );
-}
+  }
