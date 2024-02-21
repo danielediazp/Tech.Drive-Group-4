@@ -21,6 +21,8 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => console.error('MongoDB connection error:', err));
 
 
+app.listen(3001)
+
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());

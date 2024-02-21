@@ -1,119 +1,58 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { DotsVerticalIcon } from "@radix-ui/react-icons"
-import { 
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import ExamTable from "./ExamTable"
+import {useState, useEffect} from 'react'
+import "./admin.css"
 
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-
-import TestData from "@/app/testdata.json"
-
-// Can we assume exams conform to correct data types due to schema checks in back end?
-// TODO: Set up code to track active checkboxes & (later) use delete endpoint 
-// TODO: Add popup for editing record
-// TODO: Add popup or page for adding new record
+// TODO: Set up code to batch delete records
+// TODO: Add form to edit popup
+// TODO: Add popup for editing new record (using modified edit form?)
 // TODO: Set up editing buttons to use endpoints
-
-const MenuButton = () => {
-    return(
-        <DropdownMenu>
-            <DropdownMenuTrigger><DotsVerticalIcon /></DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <DropdownMenuItem>Edit exam</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Delete exam</DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
-    )
-}
-
-const ExamTable = ({exams}) => {
-    return(
-        <Table>
-            <TableHeader>
-                <TableRow>
-                    <TableHead />
-                    <TableHead>Patient ID</TableHead>
-                    <TableHead>Exam ID</TableHead>
-                    <TableHead>Image</TableHead>
-                    <TableHead>Key Findings</TableHead>
-                    <TableHead>Brixia Score</TableHead>
-                    <TableHead>Age</TableHead>
-                    <TableHead>Sex</TableHead>
-                    <TableHead>BMI</TableHead>
-                    <TableHead>ZIP Code</TableHead>
-                    <TableHead />
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {exams.map((exam) => 
-                    {
-                        return(
-                            exam != null ? 
-                            <TableRow>
-                                <TableBody>
-                {exams.map((exam) => 
-                    {
-                        return(
-                            exam != null ? 
-                            <TableRow>
-                                <TableCell>{exam.patientId}</TableCell>
-                                <TableCell>{exam.examId}</TableCell>
-                                <TableCell>{exam.imageURL}</TableCell>
-                                <TableCell>{exam.keyFindings}</TableCell>
-                                <TableCell>{exam.brixiaScores}</TableCell>
-                                <TableCell>{exam.age}</TableCell>
-                                <TableCell>{exam.sex}</TableCell>
-                                <TableCell>{exam.bmi}</TableCell>
-                                <TableCell>{exam.zipCode}</TableCell>
-                                <MenuButton />
-                            </TableRow> :
-                            <></>)
-                        }
-                )
-                }
-            </TableBody>
-                                <TableCell>{exam.patientId}</TableCell>
-                                <TableCell>{exam.examId}</TableCell>
-                                <TableCell>{exam.imageURL}</TableCell>
-                                <TableCell>{exam.keyFindings}</TableCell>
-                                <TableCell>{exam.brixiaScores}</TableCell>
-                                <TableCell>{exam.age}</TableCell>
-                                <TableCell>{exam.sex}</TableCell>
-                                <TableCell>{exam.bmi}</TableCell>
-                                <TableCell>{exam.zipCode}</TableCell>
-                                <MenuButton />
-                            </TableRow> :
-                            <></>)
-                        }
-                )
-                }
-            </TableBody>
-        </Table>
-    )
-}
+// TODO: Add alternating colors to table rows to improve readability
+// TODO: Add link to detail page from exam ID
+// TODO: Make sure key findings column has enough width to display text reasonably
 
 const Admin = () => {
+    const [exams, setExams] = useState(null)
+    const [isLoading, setLoading] = useState(true)
+    const [selected, setSelected] = useState([])
+
+    const updateSelected = (checked, exam) => {
+        if (checked) {
+            setSelected([...selected, exam._id])
+        } else {
+            setSelected(selected.filter(item => item != exam._id))
+        }
+    }
+
+    // BATCH DELETING EXAMS
+        // Delete button should only be active if one or more exams are selected
+        // Clicking delete button triggers "Are you sure" popup
+        // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
+
+    useEffect(() => {
+        fetch('https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams')
+        .then((res) => res.json())
+        .then((data) => {
+            setExams(data.exams)
+            setLoading(false)
+        })
+    }, [])
+
+    if (isLoading) return <p>Loading...</p>
+    if (!exams) return <p>No exams found!</p>
+
     return (
-        <div className="text-center font-bold py-5">
+        <div className="py-5 px-20 admin-page">
             <h1>This is the Admin Page</h1>
-            <Button>Add new record</Button>
-            <Button>Delete selected record(s)</Button>
-            <ExamTable exams={TestData["exams"]} />
+            <div className="edit-buttons py-5">
+                <Button>Add new record</Button>
+                {selected.length > 0 ? <Button>Delete {selected.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
+            </div>
+            <ExamTable exams={exams} update={updateSelected}/>
         </div>
     )   
 }
-
 
 export default Admin;

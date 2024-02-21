@@ -1,0 +1,28 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.exam-table {
+    margin: auto;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.exam-img {
+    width: 125px;
+}
+
+.exam-table-row, .checkbox-cell {
+    height: 100%;
+}
+
+.checkbox-cell {
+    display: flex;
+    align-items: center;
+}
