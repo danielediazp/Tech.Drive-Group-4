@@ -54,7 +54,9 @@ createRecords = async (req, res) => {
  */
 getRecordById = async (req, res) => {
 	try {
-		const record = await Record.findById(req.params.id);
+		const record = await Record.findById(req.params.id)
+			.populate('patientID')
+			.populate('doctorID');
 		if (!record) return res.status(404).json({ message: 'Record not found' });
 		res.json(record);
 	} catch (err) {
