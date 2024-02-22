@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,13 +16,13 @@ var doctorRouter = require('./routes/doctor');
 var app = express();
 mongoose.set('strictQuery', false);
 
-// MongoDB connection
-// TODO: locate this variable in a .env file 
-const mongoDB = 'mongodb+srv://Daniel:0nRk26ZW5Se4rNxz@cluster0.mhhszcc.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connection successful'))
-  .catch((err) => console.error('MongoDB connection error:', err));
-
+mongoose
+	.connect(process.env.DB, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(() => console.log('MongoDB connection successful'))
+	.catch((err) => console.error('MongoDB connection error:', err));
 
 app.use(logger('dev'));
 app.use(cors());
@@ -37,24 +38,24 @@ app.use('/doctor', doctorRouter);
 app.use('/patient', patientRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+	next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // Set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+	// Set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // Return an error in JSON format instead of rendering a page
-  res.status(err.status).json({
-    error: {
-      message: err.message,
-      status: err.status,
-      stack: process.env.NODE_ENV === 'development' ? err.stack : {}
-    }
-  });
+	// Return an error in JSON format instead of rendering a page
+	res.status(err.status).json({
+		error: {
+			message: err.message,
+			status: err.status,
+			stack: process.env.NODE_ENV === 'development' ? err.stack : {},
+		},
+	});
 });
 
 module.exports = app;

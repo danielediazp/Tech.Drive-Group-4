@@ -80,7 +80,9 @@ getRecordById = async (req, res) => {
  */
 getAllRecords = async (req, res) => {
 	try {
-		const records = await Record.find();
+		const records = await Record.find()
+			.populate('patientID')
+			.populate('doctorID');
 		res.json(records);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
