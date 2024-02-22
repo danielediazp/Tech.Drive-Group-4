@@ -1,20 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const patientController = require('../controllers/patient-controller');
+const validConnection = require('../middleware/valid-connection');
 
 // Create a new patient
-router.post('/', patientController.createPatient);
+router.post('/', validConnection, patientController.createPatient);
 
 // Get a specific patient by ID
-router.get('/:id', patientController.getPatientById);
+router.get('/:id', validConnection, patientController.getPatientById);
 
 // Get all patients
-router.get('/', patientController.getPatients);
+router.get('/', validConnection, patientController.getPatients);
 
 // Update patient by ID
-router.put('/:id', patientController.updatePatientById);
+router.put('/:id', validConnection, patientController.updatePatientById);
 
 // Delete patient by ID
-router.delete('/:id', patientController.deletePatientById);
+router.delete('/:id', validConnection, patientController.deletePatientById);
 
 module.exports = router;
