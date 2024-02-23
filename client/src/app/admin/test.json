@@ -1,0 +1,457 @@
+[
+    {
+      "_id": "93607",
+      "patient_id": "27156",
+      "created_by_doctor_id": "2837",
+      "bmi": 15.2,
+      "brixia_score": 6,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+20",
+      "notes": "Note 3",
+      "key_finding": "Finding Critical",
+      "date": "2021-01-24",
+      "edited_by": [
+        "4907"
+      ]
+    },
+    {
+      "_id": "31436",
+      "patient_id": "67229",
+      "created_by_doctor_id": "6111",
+      "bmi": 37.6,
+      "brixia_score": 8,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+6",
+      "notes": "Note 43",
+      "key_finding": "Finding Critical",
+      "date": "2020-07-18",
+      "edited_by": [
+        "1351",
+        "2674"
+      ]
+    },
+    {
+      "_id": "21192",
+      "patient_id": "67958",
+      "created_by_doctor_id": "8647",
+      "bmi": 36.3,
+      "brixia_score": 4,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+20",
+      "notes": "Note 52",
+      "key_finding": "Finding Abnormal",
+      "date": "2022-03-07",
+      "edited_by": [
+        "4481",
+        "8890",
+        "3434"
+      ]
+    },
+    {
+      "_id": "88956",
+      "patient_id": "56888",
+      "created_by_doctor_id": "6253",
+      "bmi": 22.0,
+      "brixia_score": 3,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+28",
+      "notes": "Note 35",
+      "key_finding": "Finding Normal",
+      "date": "2020-04-15",
+      "edited_by": [
+        "7905",
+        "8542",
+        "8856"
+      ]
+    },
+    {
+      "_id": "70734",
+      "patient_id": "49798",
+      "created_by_doctor_id": "1746",
+      "bmi": 30.8,
+      "brixia_score": 14,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+1",
+      "notes": "Note 13",
+      "key_finding": "Finding Critical",
+      "date": "2022-01-02",
+      "edited_by": [
+        "2019",
+        "2951"
+      ]
+    },
+    {
+      "_id": "71359",
+      "patient_id": "88399",
+      "created_by_doctor_id": "4395",
+      "bmi": 24.5,
+      "brixia_score": 16,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+14",
+      "notes": "Note 53",
+      "key_finding": "Finding Critical",
+      "date": "2022-08-10",
+      "edited_by": [
+        "5999"
+      ]
+    },
+    {
+      "_id": "62798",
+      "patient_id": "84704",
+      "created_by_doctor_id": "9521",
+      "bmi": 22.0,
+      "brixia_score": 6,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+26",
+      "notes": "Note 24",
+      "key_finding": "Finding Normal",
+      "date": "2022-10-06",
+      "edited_by": [
+        "9180"
+      ]
+    },
+    {
+      "_id": "38707",
+      "patient_id": "90371",
+      "created_by_doctor_id": "5016",
+      "bmi": 22.0,
+      "brixia_score": 0,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+23",
+      "notes": "Note 93",
+      "key_finding": "Finding Normal",
+      "date": "2023-10-04",
+      "edited_by": [
+        "8078",
+        "1402",
+        "6524"
+      ]
+    },
+    {
+      "_id": "62542",
+      "patient_id": "53991",
+      "created_by_doctor_id": "8015",
+      "bmi": 16.5,
+      "brixia_score": 0,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+11",
+      "notes": "Note 36",
+      "key_finding": "Finding Normal",
+      "date": "2020-06-07",
+      "edited_by": [
+        "7300",
+        "2027",
+        "7047"
+      ]
+    },
+    {
+      "_id": "20733",
+      "patient_id": "32231",
+      "created_by_doctor_id": "9707",
+      "bmi": 27.4,
+      "brixia_score": 6,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+10",
+      "notes": "Note 9",
+      "key_finding": "Finding Critical",
+      "date": "2023-11-11",
+      "edited_by": [
+        "7177",
+        "4086"
+      ]
+    },
+    {
+      "_id": "78982",
+      "patient_id": "26258",
+      "created_by_doctor_id": "8382",
+      "bmi": 28.2,
+      "brixia_score": 5,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+27",
+      "notes": "Note 32",
+      "key_finding": "Finding Critical",
+      "date": "2021-08-15",
+      "edited_by": [
+        "4706"
+      ]
+    },
+    {
+      "_id": "60856",
+      "patient_id": "54628",
+      "created_by_doctor_id": "3460",
+      "bmi": 20.2,
+      "brixia_score": 7,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+9",
+      "notes": "Note 82",
+      "key_finding": "Finding Abnormal",
+      "date": "2021-12-03",
+      "edited_by": [
+        "7924",
+        "5218",
+        "9978"
+      ]
+    },
+    {
+      "_id": "18624",
+      "patient_id": "64537",
+      "created_by_doctor_id": "8312",
+      "bmi": 17.3,
+      "brixia_score": 16,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+18",
+      "notes": "Note 46",
+      "key_finding": "Finding Critical",
+      "date": "2022-03-17",
+      "edited_by": [
+        "7150",
+        "3075",
+        "6247"
+      ]
+    },
+    {
+      "_id": "45425",
+      "patient_id": "95552",
+      "created_by_doctor_id": "9362",
+      "bmi": 24.8,
+      "brixia_score": 6,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+19",
+      "notes": "Note 32",
+      "key_finding": "Finding Normal",
+      "date": "2021-06-25",
+      "edited_by": [
+        "6022",
+        "3315"
+      ]
+    },
+    {
+      "_id": "36198",
+      "patient_id": "85152",
+      "created_by_doctor_id": "9967",
+      "bmi": 36.8,
+      "brixia_score": 0,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+6",
+      "notes": "Note 33",
+      "key_finding": "Finding Critical",
+      "date": "2021-09-03",
+      "edited_by": [
+        "1168",
+        "8966",
+        "2817"
+      ]
+    },
+    {
+      "_id": "67515",
+      "patient_id": "16747",
+      "created_by_doctor_id": "9913",
+      "bmi": 36.5,
+      "brixia_score": 9,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+12",
+      "notes": "Note 46",
+      "key_finding": "Finding Critical",
+      "date": "2021-06-27",
+      "edited_by": [
+        "2286",
+        "5130",
+        "6710"
+      ]
+    },
+    {
+      "_id": "70860",
+      "patient_id": "37724",
+      "created_by_doctor_id": "1394",
+      "bmi": 23.2,
+      "brixia_score": 5,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+16",
+      "notes": "Note 42",
+      "key_finding": "Finding Critical",
+      "date": "2020-04-05",
+      "edited_by": [
+        "9781"
+      ]
+    },
+    {
+      "_id": "54134",
+      "patient_id": "22213",
+      "created_by_doctor_id": "4933",
+      "bmi": 32.5,
+      "brixia_score": 7,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+22",
+      "notes": "Note 14",
+      "key_finding": "Finding Normal",
+      "date": "2021-01-25",
+      "edited_by": [
+        "5953"
+      ]
+    },
+    {
+      "_id": "23687",
+      "patient_id": "68863",
+      "created_by_doctor_id": "1714",
+      "bmi": 29.6,
+      "brixia_score": 12,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+28",
+      "notes": "Note 4",
+      "key_finding": "Finding Critical",
+      "date": "2021-01-12",
+      "edited_by": [
+        "8014",
+        "6999",
+        "6405"
+      ]
+    },
+    {
+      "_id": "67372",
+      "patient_id": "66502",
+      "created_by_doctor_id": "3645",
+      "bmi": 19.5,
+      "brixia_score": 2,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+12",
+      "notes": "Note 6",
+      "key_finding": "Finding Abnormal",
+      "date": "2020-05-13",
+      "edited_by": [
+        "2540",
+        "1546"
+      ]
+    },
+    {
+      "_id": "47888",
+      "patient_id": "48409",
+      "created_by_doctor_id": "8153",
+      "bmi": 26.1,
+      "brixia_score": 13,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+5",
+      "notes": "Note 45",
+      "key_finding": "Finding Critical",
+      "date": "2020-06-21",
+      "edited_by": [
+        "8277",
+        "5532",
+        "7627"
+      ]
+    },
+    {
+      "_id": "50295",
+      "patient_id": "55400",
+      "created_by_doctor_id": "4392",
+      "bmi": 18.5,
+      "brixia_score": 12,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+10",
+      "notes": "Note 21",
+      "key_finding": "Finding Critical",
+      "date": "2022-05-14",
+      "edited_by": [
+        "9297",
+        "8448",
+        "6516"
+      ]
+    },
+    {
+      "_id": "64634",
+      "patient_id": "55643",
+      "created_by_doctor_id": "8438",
+      "bmi": 36.8,
+      "brixia_score": 9,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+27",
+      "notes": "Note 86",
+      "key_finding": "Finding Normal",
+      "date": "2022-09-27",
+      "edited_by": [
+        "4285"
+      ]
+    },
+    {
+      "_id": "56291",
+      "patient_id": "49894",
+      "created_by_doctor_id": "9596",
+      "bmi": 19.9,
+      "brixia_score": 4,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+11",
+      "notes": "Note 86",
+      "key_finding": "Finding Normal",
+      "date": "2020-10-02",
+      "edited_by": [
+        "6166",
+        "8233",
+        "1711"
+      ]
+    },
+    {
+      "_id": "50511",
+      "patient_id": "27259",
+      "created_by_doctor_id": "7198",
+      "bmi": 20.3,
+      "brixia_score": 16,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+9",
+      "notes": "Note 66",
+      "key_finding": "Finding Normal",
+      "date": "2023-09-05",
+      "edited_by": [
+        "7773",
+        "2198",
+        "1760"
+      ]
+    },
+    {
+      "_id": "52864",
+      "patient_id": "30582",
+      "created_by_doctor_id": "6558",
+      "bmi": 34.9,
+      "brixia_score": 11,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+26",
+      "notes": "Note 93",
+      "key_finding": "Finding Normal",
+      "date": "2023-10-30",
+      "edited_by": [
+        "5498",
+        "8972"
+      ]
+    },
+    {
+      "_id": "51682",
+      "patient_id": "91670",
+      "created_by_doctor_id": "1028",
+      "bmi": 32.2,
+      "brixia_score": 0,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+28",
+      "notes": "Note 14",
+      "key_finding": "Finding Abnormal",
+      "date": "2020-09-04",
+      "edited_by": [
+        "5104"
+      ]
+    },
+    {
+      "_id": "30112",
+      "patient_id": "79991",
+      "created_by_doctor_id": "3335",
+      "bmi": 27.1,
+      "brixia_score": 7,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+20",
+      "notes": "Note 45",
+      "key_finding": "Finding Normal",
+      "date": "2021-11-14",
+      "edited_by": [
+        "6111",
+        "4949",
+        "6076"
+      ]
+    },
+    {
+      "_id": "73226",
+      "patient_id": "97135",
+      "created_by_doctor_id": "2268",
+      "bmi": 23.8,
+      "brixia_score": 15,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+27",
+      "notes": "Note 27",
+      "key_finding": "Finding Normal",
+      "date": "2022-09-30",
+      "edited_by": [
+        "4372",
+        "4223"
+      ]
+    },
+    {
+      "_id": "74008",
+      "patient_id": "64339",
+      "created_by_doctor_id": "2287",
+      "bmi": 40.0,
+      "brixia_score": 9,
+      "img_url": "https://dummyimage.com/600x400/000/fff&text=Record+26",
+      "notes": "Note 30",
+      "key_finding": "Finding Normal",
+      "date": "2022-09-11",
+      "edited_by": [
+        "1636"
+      ]
+    }
+  ]

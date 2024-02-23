@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import ExamTable from "./ExamTable"
 import {useState, useEffect} from 'react'
 import "./admin.css"
+import Exams from "./test.json"
 
 // TODO: Set up code to batch delete records
 // TODO: Add form to edit popup
@@ -14,31 +15,23 @@ import "./admin.css"
 // TODO: Make sure key findings column has enough width to display text reasonably
 
 const Admin = () => {
-    const [exams, setExams] = useState(null)
-    const [isLoading, setLoading] = useState(true)
+    const [exams, setExams] = useState(Exams)
+    const [isLoading, setLoading] = useState(false)
     const [selected, setSelected] = useState([])
-
-    const updateSelected = (checked, exam) => {
-        if (checked) {
-            setSelected([...selected, exam._id])
-        } else {
-            setSelected(selected.filter(item => item != exam._id))
-        }
-    }
 
     // BATCH DELETING EXAMS
         // Delete button should only be active if one or more exams are selected
         // Clicking delete button triggers "Are you sure" popup
         // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
 
-    useEffect(() => {
-        fetch('https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams')
-        .then((res) => res.json())
-        .then((data) => {
-            setExams(data.exams)
-            setLoading(false)
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams')
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //         setExams(data.exams)
+    //         setLoading(false)
+    //     })
+    // }, [])
 
     if (isLoading) return <p>Loading...</p>
     if (!exams) return <p>No exams found!</p>
@@ -46,11 +39,8 @@ const Admin = () => {
     return (
         <div className="py-5 px-20 admin-page">
             <h1>This is the Admin Page</h1>
-            <div className="edit-buttons py-5">
-                <Button>Add new record</Button>
-                {selected.length > 0 ? <Button>Delete {selected.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
-            </div>
-            <ExamTable exams={exams} update={updateSelected}/>
+            
+            <ExamTable exams={exams}/>
         </div>
     )   
 }

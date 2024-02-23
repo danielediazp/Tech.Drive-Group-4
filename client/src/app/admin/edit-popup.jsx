@@ -22,7 +22,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ImageUpload } from "./image-upload"
+import { ImageUpload } from "../../components/ui/image-upload"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { DotsVerticalIcon } from "@radix-ui/react-icons"
 
 
 // TODO: Fetch patient data
@@ -71,9 +73,9 @@ export function EditPopup({ exam }) {
     const [dob, setDob] = useState(patient["dob"])
 
     // Exam data
-    const [keyFindings, setKeyFindings] = useState(exam["keyFindings"])
+    const [keyFindings, setKeyFindings] = useState(exam["key_finding"])
     const [notes, setNotes] = useState(exam["notes"])
-    const [brixiaScores, setBrixiaScores] = useState(exam["brixiaScores"])
+    const [brixiaScores, setBrixiaScores] = useState(exam["brixia_score"])
     const [bmi, setBmi] = useState(exam["bmi"])
     const [imageURL, setImageURL] = useState(exam["imageURL"])
     const [file, setFile] = useState(null)
@@ -158,9 +160,16 @@ export function EditPopup({ exam }) {
 
         <Dialog>
             
-            <DialogTrigger asChild>
-                <Button variant="default">Edit Record</Button>
-            </DialogTrigger>
+           <DropdownMenu>
+            <DropdownMenuTrigger><DotsVerticalIcon /></DropdownMenuTrigger> 
+            <DropdownMenuContent>
+                <DialogTrigger asChild>
+                    <DropdownMenuItem><span>Edit exam</span></DropdownMenuItem>
+                </DialogTrigger>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Delete exam</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
 
             <DialogContent>
 

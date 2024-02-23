@@ -1,65 +1,116 @@
-import { Checkbox } from "@/components/ui/checkbox"
-import EditMenu from "./EditMenu"
-
+"use client";
+import { useReactTable, getCoreRowModel, flexRender,getPaginationRowModel, ColumnFiltersState, getFilteredRowModel, onRowSelectionChange  } from '@tanstack/react-table';
+import { Checkbox } from "@/components/ui/checkbox";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Input } from '@/components/ui/input';
+
+import columns from "./columns";
+import { useState } from "react";
 
 
-const ExamTable = ({exams, update}) => {
-    const truncate = (text) => {
-        return(
-            text.length <= 100 ? text : `${text.slice(0,100)}...`
-        )
-    }
 
-    return(
-        <Table className="exam-table">
+
+
+const ExamTable = ({ exams, update }) => {
+    
+
+  const [data, setData] = useState(exams); 
+  const [rowSelection, setRowSelection] = useState({});
+
+
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onRowSelectionChange: setRowSelection,
+    state: {
+        rowSelection,
+    },
+
+  });
+  
+
+  return (
+    <div>
+        <div className="edit-buttons py-5">
+                <Button>Add new record</Button>
+                {table.getFilteredSelectedRowModel().rows.length > 0 ? <Button>Delete {table.getFilteredSelectedRowModel().rows.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
+         </div>
+
+        <div className="rounded-md border">
+        <Table>
             <TableHeader>
-                <TableRow>
-                    <TableHead />
-                    <TableHead>Patient ID</TableHead>
-                    <TableHead>Exam ID</TableHead>
-                    <TableHead>Image</TableHead>
-                    <TableHead>Key Findings</TableHead>
-                    <TableHead>Brixia Score</TableHead>
-                    <TableHead>Age</TableHead>
-                    <TableHead>Sex</TableHead>
-                    <TableHead>BMI</TableHead>
-                    <TableHead>ZIP Code</TableHead>
-                    <TableHead />
+            {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                    return (
+                    <TableHead key={header.id}>
+                        {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                            )}
+                    </TableHead>
+                    );
+                })}
                 </TableRow>
+            ))}
             </TableHeader>
             <TableBody>
-                {exams.map((exam) => 
-                    {
-                        return(
-                            exam != null ? 
-                            <TableRow className="exam-table-row">
-                                <TableCell className="checkbox-cell"><Checkbox className="exam-checkbox" onCheckedChange={(checked) => update(checked, exam)}/></TableCell>
-                                <TableCell>{exam.patientId}</TableCell>
-                                <TableCell>{exam.examId}</TableCell>
-                                <TableCell><img src={exam.imageURL} className="exam-img"/></TableCell>
-                                <TableCell>{truncate(exam.keyFindings)}</TableCell>
-                                <TableCell>{exam.brixiaScores}</TableCell>
-                                <TableCell>{exam.age}</TableCell>
-                                <TableCell>{exam.sex}</TableCell>
-                                <TableCell>{exam.bmi}</TableCell>
-                                <TableCell>{exam.zipCode.padStart(5, '0')}</TableCell>
-                                <TableCell><EditMenu /></TableCell>
-                            </TableRow> :
-                            <></>)
-                        }
-                )
-                }
+            {table.getRowModel().rows.length > 0 ? (
+                table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id} data-state={row.getIsSelected() ? "selected" : undefined}>
+                    {row.getVisibleCells().map((cell) => (
+                        
+                    <TableCell key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                    ))}
+                </TableRow>
+                ))
+            ) : (
+                <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                    No results.
+                </TableCell>
+                </TableRow>
+            )}
             </TableBody>
         </Table>
-    )
-}
+        </div>
+        <div className="flex items-center justify-end space-x-2 py-4">
+            <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            >
+                Previous
+        </Button>
+            <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            >
+                Next
+        </Button>
+      </div>
+    </div>
+        
+    
+  );
+};
 
 export default ExamTable;

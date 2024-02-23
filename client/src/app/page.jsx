@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { EditPopup } from "@/components/ui/edit-popup";
+import { EditPopup } from "@/app/admin/edit-popup";
 import TestData from "./testdata.json";
 import { ImageUpload } from "@/components/ui/image-upload";
 
