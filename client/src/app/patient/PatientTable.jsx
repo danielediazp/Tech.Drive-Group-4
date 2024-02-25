@@ -10,19 +10,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from '@/components/ui/input';
 
 import columns from "./columns";
 import { useState } from "react";
+import { DeletePatient } from './delete-patient';
 
 
 
-
-
-const ExamTable = ({ exams, update }) => {
+const PatientTable = ({ patients, update }) => {
     
 
-  const [data, setData] = useState(exams); 
+  const [data, setData] = useState(patients); 
   const [rowSelection, setRowSelection] = useState({});
 
 
@@ -44,7 +42,7 @@ const ExamTable = ({ exams, update }) => {
     <div>
         <div className="edit-buttons py-5">
                 <Button>Add new record</Button>
-                {table.getFilteredSelectedRowModel().rows.length > 0 ? <Button>Delete {table.getFilteredSelectedRowModel().rows.length} selected record(s)</Button> : <Button variant="outline" disabled={true}>Delete selected record(s)</Button>}
+                <DeletePatient/>
          </div>
 
         <div className="rounded-md border">
@@ -113,4 +111,4 @@ const ExamTable = ({ exams, update }) => {
   );
 };
 
-export default ExamTable;
+export default PatientTable;

@@ -15,19 +15,19 @@ export default function Navbar() {
         </span>
       </Link>
       <nav className="flex gap-6 ml-auto">
-        <Link className="flex items-center gap-2 " href="/exams">
+        <Link className="flex items-center gap-2 " href="/patient">
           <UsersIcon className="h-6 w-6" />
           <span className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] dark:after:bg-white after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left
 ">
-            Exams
+            Patient
           </span>
         </Link>
-        <Link className="flex items-center gap-2" href="/admin">
+        <Link className="flex items-center gap-2" href="/exams">
           <ClipboardIcon className="h-6 w-6" />
 
           <span className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] dark:after:bg-white after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left
 ">
-            Admin
+            Exams
           </span>
         </Link>
         <ModeToggle />

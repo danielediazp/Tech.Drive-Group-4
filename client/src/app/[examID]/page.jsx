@@ -1,3 +1,5 @@
+"use client";
+
 import { 
     DropdownMenu,
     DropdownMenuContent,
@@ -15,9 +17,15 @@ import {
       } from "@/components/ui/table"
     
     import TestData from "@/app/testdata.json"
+    
+
 
     
-    const ExamTable = ({exams}) => {
+    const Detail = ({params}) => {
+
+        const examID = params.examID
+
+
         return(
             
         <Table>
@@ -54,13 +62,7 @@ import {
         )
     }    
 
-const Admin = () => {
-    return (
-        <div>
-            <ExamTable exams={TestData["exams"]} />
-        </div>
-    )   
-}
 
 
-export default Admin;
+
+export default Detail;
