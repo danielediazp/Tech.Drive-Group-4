@@ -25,7 +25,12 @@ mongoose
 	.catch((err) => console.error('MongoDB connection error:', err));
 
 app.use(logger('dev'));
-app.use(cors());
+app.use(
+	cors({
+		allowedHeaders: ['x-api-auth', 'Content-Type'],
+		origin: '*',
+	})
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

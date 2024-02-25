@@ -14,8 +14,8 @@ require('dotenv').config();
  */
 const validConnection = (req, res, next) => {
 
-    const key = req.headers['x-api-key'];
-
+    const key = req.headers['x-api-auth'];
+    
     if (!key) {
         return res.status(401).json({message: 'Unauthorized access'});
     }
