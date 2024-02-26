@@ -17,41 +17,14 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ImageUpload } from "../../components/ui/image-upload"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { DotsVerticalIcon } from "@radix-ui/react-icons"
 
-
-// TODO: Fetch patient data
-function fetchPatient(patientId) {
-
-    // Test data
-    return {
-        "firstName": "John",
-        "lastName": "Doe",
-        "age": 25,
-        "sex":"Male",
-        "street": "1234 Elm St",
-        "city": "Anytown",
-        "state": "CA",
-        "zip": "12345",
-        "dob": "1996-01-01",
-        "pronouns": "He/Him/His"
-    }
-}
 
 
   
 
-export function addPatient() {
-
-
-
+export function AddPatient() {
 
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
@@ -135,7 +108,9 @@ export function addPatient() {
         <Dialog>
             
         
-         <DropdownMenuTrigger> <Button> Add Patient </Button> </DropdownMenuTrigger> 
+            <DialogTrigger asChild> 
+                <Button> Add Patient </Button> 
+            </DialogTrigger> 
          
 
          <DialogContent>
@@ -225,7 +200,7 @@ export function addPatient() {
                 <DialogFooter>
                 <span className="text-red-500 text-sm font-medium">{error}</span>
                     <DialogClose asChild>
-                        <Button variant="destructive" onClick={handleCancel}>Cancel</Button>
+                        <Button variant="destructive" >Cancel</Button>
                     </DialogClose>
                     <Button disabled={loading}>Save</Button>
                 </DialogFooter>

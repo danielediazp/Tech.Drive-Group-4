@@ -1,6 +1,5 @@
 "use client";
 import { useReactTable, getCoreRowModel, flexRender,getPaginationRowModel, ColumnFiltersState, getFilteredRowModel, onRowSelectionChange  } from '@tanstack/react-table';
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
   TableBody,
@@ -10,13 +9,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from '@/components/ui/input';
-
 import columns from "./columns";
 import { useState } from "react";
 import { DeletePopup } from './delete-popup';
 import { AddExam } from './add-exam';
-
 
 
 
@@ -46,7 +42,7 @@ const ExamTable = ({ exams, update }) => {
     <div>
         <div className="edit-buttons py-5">
                 <AddExam/>
-                <DeletePopup />
+                <DeletePopup/>
                 
          </div>
 

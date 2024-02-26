@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import columns from "./columns";
 import { useState } from "react";
 import { DeletePatient } from './delete-patient';
+import { AddPatient } from './patient-popup';
+
 
 
 
@@ -41,9 +43,9 @@ const PatientTable = ({ patients, update }) => {
   return (
     <div>
         <div className="edit-buttons py-5">
-                <Button>Add new record</Button>
-                <DeletePatient/>
-         </div>
+            <AddPatient/>
+            <DeletePatient/>
+        </div>
 
         <div className="rounded-md border">
         <Table>
