@@ -1,8 +1,31 @@
 import PatientTable from "./PatientTable"
-import patients from "./patients_data.json"
+import axios from "axios"
 
-export default function Exams()
+async function getPatients() {
+    try {
+        const response = await fetch("http://localhost:3001/patient", {
+            cache: "no-cache",
+            method: 'GET', 
+            headers: {
+                "x-api-auth": "HACKDIV"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export default async function Page()
 {
+    const patients = await getPatients()
     return (
         <div className="w-full min-h-screen">
             <div className="text-left px-12 pt-8">

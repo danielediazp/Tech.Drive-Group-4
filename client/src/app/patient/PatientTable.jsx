@@ -12,20 +12,22 @@ import {
 import { Button } from "@/components/ui/button";
 
 import columns from "./columns";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DeletePatient } from './delete-patient';
 import { AddPatient } from './patient-popup';
 
 
 
 
-const PatientTable = ({ patients, update }) => {
+const PatientTable = ({ patients}) => {
     
 
-  const [data, setData] = useState(patients); 
+  const data = patients
+
   const [rowSelection, setRowSelection] = useState({});
 
 
+  console.log(patients)
 
   const table = useReactTable({
     data,
@@ -44,7 +46,7 @@ const PatientTable = ({ patients, update }) => {
     <div>
         <div className="edit-buttons py-5">
             <AddPatient/>
-            <DeletePatient/>
+            <DeletePatient patients={table.getSelectedRowModel().rows}/>
         </div>
 
         <div className="rounded-md border">

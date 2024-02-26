@@ -138,8 +138,9 @@ updateRecordById = async (req, res) => {
  */
 deleteRecordById = async (req, res) => {
 	try {
+		console.log(req.params.id);
 		const record = await Record.findByIdAndDelete(req.params.id);
-		if (!record) return res.status(404).json({ message: 'Record not found' });
+		if (!record) return res.status(404).json({ message: req.params.id + ' Record not found'});
 		res.status(204).send();
 	} catch (err) {
 		res.status(500).json({ message: err.message });

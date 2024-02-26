@@ -14,6 +14,10 @@ const truncate = (text) => {
     )
 }
 
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString()
+}
+
 
 const column = [
     {
@@ -110,7 +114,7 @@ const column = [
             if (patient) {
                 return (
                     <div>
-                        <p>{patient.birth_date}</p>
+                        <p>{formatDate(patient.birth_date)}</p>
                     </div>
                 )
              }
@@ -132,13 +136,13 @@ const column = [
     },
     {
         header:"Zip Code",
-        accesorKey:"zip_code",
+        accesorKey:"zipcode",
         cell: (props)=> {
             const patient = props.row.original
             if (patient) {
                 return (
                     <div>
-                        <p>{patient.zip_code}</p>
+                        <p>{patient.zipcode}</p>
                     </div>
                 )
              }

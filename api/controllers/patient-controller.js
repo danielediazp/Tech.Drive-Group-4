@@ -146,7 +146,7 @@ deletePatientById = async (req, res) => {
     try {
         const deletedPatient = await Patient.findByIdAndDelete(req.params.id);
         if (!deletedPatient) {
-          return res.status(404).json({ message: 'Patient not found' });
+          return res.status(404).json({ message:' Record not found'});
         }
         res.status(204).json(); // No content
     } catch (err) {
