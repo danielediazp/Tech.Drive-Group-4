@@ -2,26 +2,21 @@ const mongoose = require('mongoose');
 
 // Define the structure of the Doctor model schema
 const doctorSchema = new mongoose.Schema({
-    // First name of doctor
     name: {
         type: String,
         required: true
     },
-    // Last name of the doctor
     lname: {
         type: String,
         required: true
     },
-    // Pronouns used by the doctor (optional)
     pronouns: {
         type: String
     },
-    // Hospital where the doctor is affiliated
     hospital: {
         type: String,
         required: true
     }
 });
 
-// Export the Doctor model with the defined schema
 module.exports = mongoose.model('Doctor', doctorSchema);

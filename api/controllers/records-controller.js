@@ -1,4 +1,4 @@
-const Record = require('../models/records');
+const Record = require('../models/records-model');
 
 /**
  * Creates a new medical record and saves it to the database.
@@ -54,7 +54,9 @@ createRecords = async (req, res) => {
  */
 getRecordById = async (req, res) => {
 	try {
-		const record = await Record.findById(req.params.id);
+		const record = await Record.findById(req.params.id)
+			.populate('patientID')
+			.populate('doctorID');
 		if (!record) return res.status(404).json({ message: 'Record not found' });
 		res.json(record);
 	} catch (err) {
@@ -78,7 +80,9 @@ getRecordById = async (req, res) => {
  */
 getAllRecords = async (req, res) => {
 	try {
-		const records = await Record.find();
+		const records = await Record.find()
+			.populate('patientID')
+			.populate('doctorID');
 		res.json(records);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
