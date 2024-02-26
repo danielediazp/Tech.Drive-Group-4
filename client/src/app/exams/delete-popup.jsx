@@ -10,11 +10,52 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
   import { Button } from "@/components/ui/button"
+  import { useToast } from "@/components/ui/use-toast"
+
+
   
 
 
 
-export function DeletePopup(exams){
+export function DeletePopup(props){
+
+  const {toast} = useToast()
+
+
+
+  function handleDelete() {
+
+    console.log(props)
+    const exams = props.exams
+
+    if (exams.length === 0) return;
+    
+    const ids = exams.map(exams => exams.original._id)
+
+    for (let id of ids) {
+      fetch(`http://localhost:3001/records/${id}`, {
+        headers: {
+          "x-api-auth": "HACKDIV"
+        },
+        method: "DELETE",
+
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        toast({
+          title: "Exams deleted",
+          description: "The selected exams have been deleted please reload the page",
+        })
+    
+      })
+      
+    }
+    
+      
+  }
+
 
     return(
         <AlertDialog>
@@ -29,7 +70,7 @@ export function DeletePopup(exams){
             Are you sure you want to delete the selected record(s)?
           </AlertDialogDescription>
           <AlertDialogFooter>
-            <AlertDialogAction varient="destructive">Delete</AlertDialogAction>
+            <AlertDialogAction varient="destructive" onClick={handleDelete}>Delete</AlertDialogAction>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>

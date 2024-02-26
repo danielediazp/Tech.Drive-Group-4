@@ -1,40 +1,49 @@
-'use client'
-
-import { Button } from "@/components/ui/button"
 import ExamTable from "./ExamTable"
-import {useState, useEffect} from 'react'
 import "./admin.css"
-import Exams from "./test.json"
+// Fetching the exams from the serve
 
-// TODO: Set up code to batch delete records
-// TODO: Add form to edit popup
-// TODO: Add popup for editing new record (using modified edit form?)
-// TODO: Set up editing buttons to use endpoints
-// TODO: Add alternating colors to table rows to improve readability
-// TODO: Add link to detail page from exam ID
-// TODO: Make sure key findings column has enough width to display text reasonably
+async function getExams() {
+    try {
+        const response = await fetch("http://localhost:3001/records", {
+            cache: "no-cache",
+            method: 'GET', 
+            headers: {
+                "x-api-auth": "HACKDIV"
+            }
+        });
 
-const Admin = () => {
-    const [exams, setExams] = useState(Exams)
-    const [isLoading, setLoading] = useState(false)
-    const [selected, setSelected] = useState([])
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
 
-    // BATCH DELETING EXAMS
-        // Delete button should only be active if one or more exams are selected
-        // Clicking delete button triggers "Are you sure" popup
-        // Verifying will call a function that uses an endpoint that makes use of Mongo's deleteMany method to remove any exam with an ID in the list
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
 
-    // useEffect(() => {
-    //     fetch('https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams')
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         setExams(data.exams)
-    //         setLoading(false)
-    //     })
-    // }, [])
+function parseData(data) {
+    return data.map(item => ({
+        _id: item._id,
+        patient_id: item.patientID ? item.patientID._id : "", // Assuming you want the patient's _id if available
+        created_by_doctor_id: item.doctorID ? item.doctorID._id : "", // Assuming you want the doctor's _id if available
+        bmi: item.bmi,
+        brixia_score: item.brixiaScore,
+        img_url: item.imageURL,
+        notes: item.note,
+        key_finding: item.keyFinding,
+        date: item.date,
+        edited_by: [] 
+    }));
+}
 
-    if (isLoading) return <p>Loading...</p>
-    if (!exams) return <p>No exams found!</p>
+
+export default async function Page(){
+
+    const data = await getExams()
+    const exams = parseData(data);
 
     return (
         <div className="w-full min-h-screen">
@@ -49,4 +58,3 @@ const Admin = () => {
     )   
 }
 
-export default Admin;

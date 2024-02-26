@@ -9,30 +9,43 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ImageUpload } from "../../components/ui/image-upload"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { DotsVerticalIcon } from "@radix-ui/react-icons"
+import { useToast } from "@/components/ui/use-toast"
+
+
+
+
+async function addExam(exam) {
+
+    const response = await fetch("http://localhost:3001/records", {
+        method: "POST",
+        headers: {
+            "x-api-auth": "HACKDIV",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(exam)
+    })
+    if (!response.ok) {
+        setError(`Error: ${response.status}`);
+    }
+}
+
+
 
 
   
 
 export function AddExam() {
-
+    
+    const {toast} = useToast()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+
+    
 
     const [patientID, setPatientId] = useState("")
 
@@ -42,8 +55,7 @@ export function AddExam() {
     const [brixiaScores, setBrixiaScores] = useState("")
     const [bmi, setBmi] = useState("")
     const [imageURL, setImageURL] = useState("")
-    const [file, setFile] = useState(null)
-
+    
 
     // TODO: Handle file upload (set the imageURL to the new file's URL)
     function handleFile(e) {
@@ -52,9 +64,32 @@ export function AddExam() {
 
     //TODO: Handle save get all of the data and send it to the back end
     function handleSave() {
+
+        if (patientID === "" || keyFindings === "" || notes === "" || brixiaScores === "" || bmi === "") {
+            setError("Please fill out all fields")
+            return
+        }
+
+        setLoading(true)
+
+        const exam = {
+            patientID: patientID,
+            doctorID: "65cd736cfbc33f835a47167f",
+            keyFinding: keyFindings,
+            note: notes,
+            brixiaScore: brixiaScores,
+            bmi: bmi,
+            imageURL: imageURL
+        }
+        addExam(exam)
+        setLoading(false)
+        toast({
+            title: "Exam added",
+            description: "The exam has been added please reload the page"
+        })
+
     }
 
-    //TODO: Create delete 
 
     
 
@@ -72,33 +107,7 @@ export function AddExam() {
     function handleBmiChange(e) {   
         setBmi(e.target.value)
     }
-    function handleFirstNameChange(e) {
-        setFirstName(e.target.value)
-    }
-    function handleLastNameChange(e) {
-        setLastName(e.target.value)
-    }
-    function handleAgeChange(e) {
-        setAge(e.target.value)
-    }
-    function handleSexChange(e) {
-        setSex(e.target.value)
-    }
-    function handlePronounsChange(e) {
-        setPronouns(e.target.value)
-    }
-    function handleStreetChange(e) {
-        setStreet(e.target.value)
-    }
-    function handleCityChange(e) {
-        setCity(e.target.value)
-    }
-    function handleStateChange(e) {
-        setState(e.target.value)
-    }
-    function handleZipChange(e) {
-        setZip(e.target.value)
-    }
+   
     function handlePatientIdChange(edit) {
         setPatientId(edit.target.value)
     }
@@ -127,6 +136,7 @@ export function AddExam() {
 
                 </DialogHeader>
                 <DialogDescription>
+                {loading && <span className="text-black dark:text-white">Loading...</span>}
 
                 <ImageUpload changeUrl={setImageURL} setLoading={setLoading}/>
 
@@ -163,14 +173,16 @@ export function AddExam() {
                     
                 </DialogDescription>
                 
+                
                 <DialogFooter>
                 <span className="text-red-500 text-sm font-medium">{error}</span>
                     <DialogClose asChild>
                         <Button variant="destructive">Cancel</Button>
                     </DialogClose>
-                    <Button disabled={loading}>Save</Button>
+                    <Button disabled={loading} onClick={handleSave}>Save</Button>
                 </DialogFooter>
             </DialogContent>
+    
         </Dialog>
     )
 

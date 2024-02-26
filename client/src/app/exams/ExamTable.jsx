@@ -42,7 +42,7 @@ const ExamTable = ({ exams, update }) => {
     <div>
         <div className="edit-buttons py-5">
                 <AddExam/>
-                <DeletePopup/>
+                <DeletePopup exams={table.getSelectedRowModel().rows}/>
                 
          </div>
 

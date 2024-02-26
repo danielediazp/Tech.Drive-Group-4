@@ -19,13 +19,73 @@ import {
 import { Input } from "@/components/ui/input"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useState } from "react"
+import { useToast } from "@/components/ui/use-toast"
+import { set } from "date-fns"
 
 
+async function addPatient(patient) {
+    
+    console.log(patient)
+    const response = await fetch("http://localhost:3001/patient", {
+        method: "POST",
+        headers: {
+            "x-api-auth": "HACKDIV",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(patient)        
+    
+}
+    )
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+    }
+}
 
   
 
 export function AddPatient() {
 
+    const {toast} = useToast()
+
+    function handleSave() {
+
+        if (firstName === "" || lastName === "" || pronouns === "" || dob === "" || street === "" || city === "" || state === "" || zip === "") {
+            setError("Please fill out all fields")
+            return
+        }
+
+
+        const patient = {
+            name: firstName,
+            lname: lastName,
+            pronouns: pronouns,
+            sex: sex,
+            birth_date: dob,
+            street: street,
+            city: city,
+            state: state,
+            zipcode: zip,
+        }
+        addPatient(patient).then(() => {
+            console.log("Patient added")
+        }
+        ).catch((err) => {
+            console.error(err)
+            return
+        })
+        toast({
+            title: "Patient added",
+            description: "The patient has been added please reload the page"
+        })
+        setOpen(false)
+
+    }
+
+
+
+
+        
+    const [open, setOpen] = useState(false)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -42,17 +102,6 @@ export function AddPatient() {
     const [zip, setZip] = useState("")
     const [dob, setDob] = useState("")
 
-   
-
-
-    // TODO: Handle file upload (set the imageURL to the new file's URL)
-    function handleFile(e) {
-        setFile(e.target.files[0])
-    }
-
-    //TODO: Handle save get all of the data and send it to the back end
-    function handleSave() {
-    }
 
     
 
@@ -79,8 +128,9 @@ export function AddPatient() {
     function handleAgeChange(e) {
         setAge(e.target.value)
     }
-    function handleSexChange(e) {
-        setSex(e.target.value)
+    function handleSexChange(value) {
+        console.log(value)
+        setSex(value)
     }
     function handlePronounsChange(e) {
         setPronouns(e.target.value)
@@ -105,7 +155,7 @@ export function AddPatient() {
 
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             
         
             <DialogTrigger asChild> 
@@ -147,7 +197,7 @@ export function AddPatient() {
                         <div className="grid grid-cols-2 gap-y-4 pb-4">
                             <div className="col-span-2 flex justify-between items-center">
                                 <span className="text-black dark:text-white text-bold" >Patient Sex: </span>
-                                <Select onValueChange={handleSexChange} defaultValue={sex}>
+                                <Select onValueChange={(value)=> handleSexChange(value)} defaultValue={sex}>
                                     <SelectTrigger className="w-[90px] h-[30px]">
                                         <SelectValue ></SelectValue>
                                     </SelectTrigger>
@@ -174,7 +224,7 @@ export function AddPatient() {
                         <div className="grid grid-cols-2 gap-y-4 pb-4">
                             <div className="col-span-2 flex justify-between items-center">
                                 <span className="text-black dark:text-white text-bold" >Birth Date: </span>
-                                <Input onChange={setDob} value={dob} type="date" className="w-[120px] h-[30px]" />
+                                <Input onChange={(e) => setDob(e.target.value)} value={dob} type="date" className="w-[120px] h-[30px]" />
                             </div>
                         </div>
 
@@ -202,7 +252,7 @@ export function AddPatient() {
                     <DialogClose asChild>
                         <Button variant="destructive" >Cancel</Button>
                     </DialogClose>
-                    <Button disabled={loading}>Save</Button>
+                    <Button disabled={loading} onClick={handleSave}>Save</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

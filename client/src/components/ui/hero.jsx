@@ -1,6 +1,56 @@
+"use client";
 import Link from "next/link"
+import {useEffect, useState} from "react"
+
+
+async function getPatients() {
+    const response = await fetch("http://localhost:3001/patient", {
+        headers: {
+            "x-api-auth": "HACKDIV",
+        },
+        method: "GET",
+    });
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+    }
+    return response.json();
+}
+ 
+async function getExams() {
+    const response = await fetch("http://localhost:3001/records", {
+        headers: {
+            "x-api-auth": "HACKDIV",
+        },
+        method: "GET",
+    });
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+    }
+    return response.json();
+
+}
+
+
+
 
 export default function Hero() {
+
+    const [patients, setPatients] = useState("-")
+    const [exams, setExams] = useState("-")
+
+    useEffect(() => {
+        const patient = getPatients()
+        const exam = getExams()
+        Promise.all([patient, exam]).then(([patient, exam]) => {
+            setPatients(patient.length)
+            setExams(exam.length)
+        }).catch(console.error)
+
+    }
+    , [])
+
+
+
   return (
     <div className="flex flex-col h-screen">
       <main className="flex-1">
@@ -35,21 +85,19 @@ export default function Hero() {
             <div className="grid grid-cols-2 items-center p-4">
               <div className="space-y-1">
                 <h3 className="text-base font-bold">Total Patients</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Updated 2 minutes ago</p>
               </div>
               <div className="flex items-start justify-end space-x-2">
                 <UserIcon className="w-10 h-10" />
-                <h3 className="text-2xl font-bold">250</h3>
+                <h3 className="text-2xl font-bold">{patients}</h3>
               </div>
             </div>
             <div className="grid grid-cols-2 items-center p-4">
               <div className="space-y-1">
                 <h3 className="text-base font-bold">Total Exams</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Updated 2 minutes ago</p>
               </div>
               <div className="flex items-start justify-end space-x-2">
                 <FileIcon className="w-10 h-10" />
-                <h3 className="text-2xl font-bold">750</h3>
+                <h3 className="text-2xl font-bold">{exams}</h3>
               </div>
             </div>
           </div>

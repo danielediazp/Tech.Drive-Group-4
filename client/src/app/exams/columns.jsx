@@ -1,13 +1,15 @@
 // Column definitions for table
 "use client";
-
-import { Check } from "lucide-react";
 import "./admin.css"
 import { EditPopup } from "./edit-popup";
-import { ColumnDef , createColumnHelper} from "@tanstack/table-core"
 import {Checkbox} from "@/components/ui/checkbox"
+import Link from "next/link";
+import {Button} from "@/components/ui/button"
 
 
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString()
+}
 
 const truncate = (text) => {
     return(
@@ -67,7 +69,7 @@ const column = [
             if (exam) {
                 return (
                     <div>
-                        <p>{exam._id}</p>
+                        <Link href={exam._id}><Button variant="ghost">{exam._id}</Button></Link>
                     </div>
                 )
              }
@@ -154,7 +156,7 @@ const column = [
             if (exam) {
                 return (
                     <div>
-                        <p>{exam.date}</p>
+                        <p>{formatDate(exam.date)}</p>
                     </div>
                 )
              }

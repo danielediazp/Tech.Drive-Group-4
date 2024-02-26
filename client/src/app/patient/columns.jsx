@@ -2,7 +2,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { EditPopup } from "../exams/edit-popup";
+import { DeleteDropdown } from "./delete-dopdown";
 import { ColumnDef , createColumnHelper} from "@tanstack/table-core"
 import {Checkbox} from "@/components/ui/checkbox"
 
@@ -154,7 +154,7 @@ const column = [
         id:"edit",
         cell: ({row}) => {
             return(
-                <EditPopup exam={row.original}/>
+                <DeleteDropdown patient={row.original}/>
             )}
 
     }
